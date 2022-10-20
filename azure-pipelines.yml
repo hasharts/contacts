@@ -29,8 +29,8 @@ steps:
 
 - task: Docker@2
   inputs:
-    containerRegistry: 'Docker-raghav141988'
-    repository: 'raghav141988/contacts-backend'
+    containerRegistry: 'devinka'
+    repository: 'devinka/contacts-backend'
     command: 'buildAndPush'
     Dockerfile: './contacts-backend/Dockerfile'
     buildContext: './contacts-backend'
@@ -39,8 +39,8 @@ steps:
       $(Build.BuildId)
 - task: Docker@2
   inputs:
-    containerRegistry: 'Docker-raghav141988'
-    repository: 'raghav141988/contacts-frontend'
+    containerRegistry: 'devinka'
+    repository: 'devinka/contacts-frontend'
     command: 'buildAndPush'
     Dockerfile: './contacts-frontend/Dockerfile'
     buildContext: './contacts-frontend'
@@ -64,7 +64,7 @@ steps:
     kubernetesServiceEndpoint: 'contactsServiceConnection'
     namespace: 'kube-system'
     command: 'set'
-    arguments: 'image deployment/contact-frontend-deployment contacts-frontend=raghav141988/contacts-frontend:$(Build.BuildId)'
+    arguments: 'image deployment/contact-frontend-deployment contacts-frontend=devinka/contacts-frontend:$(Build.BuildId)'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Container Registry'
     dockerRegistryEndpoint: 'Docker-raghav141988'
@@ -74,7 +74,7 @@ steps:
     kubernetesServiceEndpoint: 'contactsServiceConnection'
     namespace: 'kube-system'
     command: 'set'
-    arguments: 'image deployment/contact-backend-deployment contacts-api=raghav141988/contacts-backend:$(Build.BuildId)'
+    arguments: 'image deployment/contact-backend-deployment contacts-api=devinka/contacts-backend:$(Build.BuildId)'
     secretType: 'dockerRegistry'
     containerRegistryType: 'Container Registry'
     dockerRegistryEndpoint: 'Docker-raghav141988'
